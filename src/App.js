@@ -9,12 +9,7 @@ const App = () => {
         if (allowButton) {
             setCounter((prevCounter) => {
                 return prevCounter + 1;
-
             });
-            setCounter((prevCounter) => {
-                return prevCounter + 1;
-            });
-
         }
         else {
             alert("Please Allow Button To Increament");
@@ -27,12 +22,21 @@ const App = () => {
     const allowHandler = () => {
         setAllow((preallow) => { return !preallow });
     };
+    const minusHandler = useCallback(() => {
+        if (allowButton) {
+            setCounter((prevCounter) => { return prevCounter - 1 });
+        }
+        else {
+            alert("Please Allow Buttons To Increament");
+        }
+    }, [allowButton]);
     return (
         <React.Fragment>
             <div className="container">
                 <h1>{counter}</h1>
                 <button onClick={plusHandler}>Click + 1</button>
-                <button onClick={allowHandler}>{allowButton && <span>Disable From Increament</span> || <span>Allow Button to Increament</span>}</button>
+                <button onClick={minusHandler}>Click - 1</button>
+                <button onClick={allowHandler}>{(allowButton && <span>Disable Button</span>) || <span>Allow Button</span>}</button>
             </div>
         </React.Fragment>
     );
