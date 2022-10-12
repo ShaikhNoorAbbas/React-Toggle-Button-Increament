@@ -1,14 +1,6 @@
-import React, { Fragment, useState } from "react";
-const ListItem = (props) => {
-  return (
-    <>
-      <div className="list-item row jc-space-between ">
-        <span>{props.data.description}</span>
-      </div>
-    </>
-  );
-};
-
+import React, { useState } from "react";
+import Counter from "./Components/Counter";
+import Form from "./Components/Form";
 const App = () => {
   const [task, settask] = useState("");
   const [todo, settodo] = useState([]);
