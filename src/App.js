@@ -30,13 +30,18 @@ const App = () => {
             alert("Please Allow Buttons To Increament");
         }
     }, [allowButton]);
+    const resetHandler = useCallback(() => {
+        allowButton ? setCounter(0) : alert("Please Allow Buttons to Work");
+    }, [allowButton]);
     return (
         <React.Fragment>
             <div className="container">
                 <h1>{counter}</h1>
                 <button onClick={plusHandler}>Click + 1</button>
                 <button onClick={minusHandler}>Click - 1</button>
+                <br />
                 <button onClick={allowHandler}>{(allowButton && <span>Disable Button</span>) || <span>Allow Button</span>}</button>
+                <button onClick={resetHandler}>Reset to 0</button>
             </div>
         </React.Fragment>
     );

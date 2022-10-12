@@ -5,9 +5,12 @@
     margin: 23px;
 }
 
+body{
+    background-color: rgb(129, 102, 102);
+}
 .container
 {
-    border: 3px dashed black;
+    border: 3px dashed blue;
     background-color: bisque;
     color: red;
     width: 50%;
