@@ -1,33 +1,40 @@
+import "./App.css";
 import React, { useState } from "react";
-import Counter from "./Components/Counter";
-import Form from "./Components/Form";
+import { useCallback } from "react";
+import { useEffect } from "react";
 const App = () => {
-  const [task, settask] = useState("");
-  const [todo, settodo] = useState([]);
-  const inputHandler = (event) => {
-    const { target: { value } } = event;
-    console.log(value);
-    settask(value);
-  };
-  const clcikHandler = () => {
-    todo.push({ description: task });
-    settodo(todo);
-    settask("");
-  };
-  return (
-    <Fragment>
-      <div className="app-background">
-        <p className="heading-text"> TO-DO List 🔥</p>
-        <div className="task-container">
-          <div>
-            <input type="text" className="text-input" value={task} onChange={inputHandler} />
-            <button className="add-button" onClick={clcikHandler}>Add Task 👆</button>
-            {todo?.length ? todo.map((element) => <ListItem data={element} />) :
-              <p className="no-item-text" >No Task Added 😕</p>}
-          </div>
-        </div>
-      </div>
-    </Fragment>
-  );
+    const [counter, setCounter] = useState(0);
+    const [allowButton, setAllow] = useState(false);
+    const plusHandler = useCallback(() => {
+        if (allowButton) {
+            setCounter((prevCounter) => {
+                return prevCounter + 1;
+
+            });
+            setCounter((prevCounter) => {
+                return prevCounter + 1;
+            });
+
+        }
+        else {
+            alert("Please Allow Button To Increament");
+        }
+    }, [allowButton])
+    useEffect(() => {
+        document.title = `Counter Value: ${counter}`
+        return () => { console.log("I Run First") }
+    }, [counter]);
+    const allowHandler = () => {
+        setAllow((preallow) => { return !preallow });
+    };
+    return (
+        <React.Fragment>
+            <div className="container">
+                <h1>{counter}</h1>
+                <button onClick={plusHandler}>Click + 1</button>
+                <button onClick={allowHandler}>{allowButton && <span>Disable From Increament</span> || <span>Allow Button to Increament</span>}</button>
+            </div>
+        </React.Fragment>
+    );
 };
 export default App;
